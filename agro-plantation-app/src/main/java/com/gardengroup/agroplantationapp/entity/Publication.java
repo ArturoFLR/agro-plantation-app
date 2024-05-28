@@ -1,8 +1,6 @@
 package com.gardengroup.agroplantationapp.entity;
 
 
-import com.gardengroup.agroplantationapp.exceptions.OurException;
-import com.gardengroup.agroplantationapp.service.Approvable;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;

@@ -34,7 +34,7 @@ public class AdminService implements Approvable{
         StateRequest pendingState = stateRequestRepository.findByState("PENDING").orElse(null);
         return producerRequestRepository.findByStaterequest(pendingState);
     }
-
+    @Override
     @Transactional
     public void approve(Long producerRequestId) {
         // Obtener la solicitud del productor por ID
@@ -71,7 +71,7 @@ public class AdminService implements Approvable{
 
 
 
-
+    @Override
     @Transactional
     public void reject(Long producerRequestId) {
         // Obtener la solicitud del productor por ID

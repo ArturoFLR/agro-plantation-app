@@ -1,18 +1,13 @@
 package com.gardengroup.agroplantationapp.service;
 
 import com.gardengroup.agroplantationapp.entity.*;
-import com.gardengroup.agroplantationapp.exceptions.OurException;
-
 import com.gardengroup.agroplantationapp.repository.StateRequestRepository;
 import com.gardengroup.agroplantationapp.repository.UserRepository;
-
 import com.gardengroup.agroplantationapp.repository.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.gardengroup.agroplantationapp.dto.PublicationSaveDTO;
 import com.gardengroup.agroplantationapp.dto.PublicationUpdDTO;
 import com.gardengroup.agroplantationapp.repository.PublicationRepository;
@@ -178,12 +173,12 @@ public class PublicationService implements Approvable {
     }
 
 
-    @Transactional
     public List<Publication> pendingPublications() {
         return publicationRepository.findAllPendingPublications();
     }
 
-
+    @Transactional
+    @Override
     public void approve(Long publicationId) {
         Optional<Publication> optionalPublication = publicationRepository.findById(publicationId);
 
@@ -207,8 +202,8 @@ public class PublicationService implements Approvable {
             throw new IllegalArgumentException("Publicación con ID " + publicationId + " no encontrada.");
         }
     }
-
-
+    @Transactional
+    @Override
     public void reject(Long publicationId) {
         Optional<Publication> optionalPublication = publicationRepository.findById(publicationId);
 
